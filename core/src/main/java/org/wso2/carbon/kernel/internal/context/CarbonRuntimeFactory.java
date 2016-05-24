@@ -19,6 +19,7 @@ import org.wso2.carbon.kernel.CarbonRuntime;
 import org.wso2.carbon.kernel.PrivilegedCarbonRuntime;
 import org.wso2.carbon.kernel.config.CarbonConfigProvider;
 import org.wso2.carbon.kernel.config.model.CarbonConfiguration;
+import org.wso2.carbon.kernel.security.internal.SecretManagerInitializer;
 
 /**
  * This is a factory class which creates a DefaultCarbonRuntime using a provided CarbonConfigProvider,
@@ -35,6 +36,9 @@ public class CarbonRuntimeFactory {
 
         //TODO Remove hardcoded implementations.
         CarbonConfiguration carbonConfiguration = carbonConfigProvider.getCarbonConfiguration();
+
+        SecretManagerInitializer secretManagerInitializer = new SecretManagerInitializer();
+        secretManagerInitializer.init();
 
         PrivilegedCarbonRuntime carbonRuntime = new DefaultCarbonRuntime();
         carbonRuntime.setCarbonConfiguration(carbonConfiguration);

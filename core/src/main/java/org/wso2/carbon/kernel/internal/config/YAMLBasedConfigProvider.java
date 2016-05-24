@@ -58,6 +58,7 @@ public class YAMLBasedConfigProvider implements CarbonConfigProvider {
             Yaml yaml = new Yaml();
             yaml.setBeanAccess(BeanAccess.FIELD);
             return yaml.loadAs(yamlFileString, CarbonConfiguration.class);
+            //todo change to read carbon.yml as a Map --> may be can start adding configuration to a separate yml file?
         } catch (IOException e) {
             String errorMessage = "Failed populate CarbonConfiguration from " + configFileLocation;
             logger.error(errorMessage, e);
